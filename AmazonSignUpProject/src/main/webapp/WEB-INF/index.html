@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+
+        function validateForm() {
+            //FN
+            var firstName = document.getElementById("firstName");
+            var firstNameError = document.getElementById("firstNameError");
+            firstNameError.innerHTML = "";
+
+            if (firstName.value.length < 3) {
+                firstNameError.innerHTML = "First name must have at least 3 characters.";
+                return false;
+            }
+            if (/\d/.test(firstName.value)) {
+                firstNameError.innerHTML = "First name should not contain numbers.";
+                return false;
+            }
+
+            //MN
+            var middleName = document.getElementById("middleName");
+            var middleNameError = document.getElementById("middleNameError");
+            middleNameError.innerHTML = "";
+
+
+            if (middleName.value.length > 5) {
+                middleNameError.innerHTML = "Middle name must have at most 10 characters.";
+                return false;
+            }
+
+            //LN
+            var lastName = document.getElementById("lastName");
+            var lastNameError = document.getElementById("lastNameError");
+            lastNameError.innerHTML = "";
+
+            if (lastName.value.trim() === "") {
+                lastNameError.innerHTML = "Last name is required.";
+                return false;
+            }
+
+            if (/\d/.test(lastName.value)) {
+                lastNameError.innerHTML = "last name should not contain numbers.";
+                return false;
+            }
+
+
+
+            //pincode
+            var pincode=document.getElementById("pincode");
+            var pincodeError=document.getElementById("pincodeError");
+            if (!/\d/.test(pincode.value )) {
+                lastNameError.innerHTML = "pincode should only contain numbers.";
+                return false;
+            }
+            // if (pincode.value.length !== 6) {
+            //     pincodeError.innerHTML = "Pincode should be 6 digits.";
+            //     return false;
+            // }
+            return true;
+        }
+
+    </script>
+    <style>
+
+
+
+        header {
+            background-color:lightgreen;
+            color: rgb(17, 11, 11);
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            width: 90px;
+            height: 70px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .brand h1 {
+            margin-left: 10px;
+            font-size: 30px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            padding: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: black;
+            margin: 0 15px;
+            font-size: 30px;
+        }
+
+        .next-page {
+            margin-left: auto;
+            color: black;
+            text-decoration: none;
+            font-size: 30px;
+        }
+
+        form {
+            max-width: 1500px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            /* box-sizing: border-box; */
+        }
+
+        label {
+            display: inline;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input, select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 15px;
+            /* border: 1px solid #ddd;
+
+            box-sizing: border-box; */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+
+
+        th, td {
+            padding: 20px;
+            text-align: left;
+            /* border: 1px solid black; */
+
+        }
+
+        .radio-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-group label {
+            margin-right: 15px;
+        }
+
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            margin: 0 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: lightgreen;
+            color: rgb(11, 9, 9);
+            text-align: center;
+            padding: 10px;
+        }
+
+        .error-message{
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <div class="brand">
+        <img class="logo" src="/images/Logo.png" alt="Logo">
+        <h1>Xworkz</h1>
+    </div>
+    <nav>
+        <a href="#">Home</a>
+    </nav>
+    <a class="next-page" href="#">Next Page</a>
+</header>
+
+<form onchange="return validateForm()"   action="user" method="post">
+    <table style="border: 1px solid b;">
+        <tr>
+            <th><label for="firstName">First Name:</label></th>
+            <td><input type="text" id="firstName" name="firstName" required></td><br>
+            <span id="firstNameError" class="error-message"></span>
+
+            <th><label for="middleName">Middle Name:</label></th>
+            <td><input type="text" id="middleName" name="middleName"></td>
+            <span id="middleNameError" class="error-message"></span>
+
+            <th><label for="lastName">Last Name:</label></th>
+            <td><input type="text" id="lastName" name="lastName" required></td>
+            <span id="lastNameError" class="error-message"></span>
+        </tr>
+
+
+
+        <tr>
+            <th><label for="houseNumber">House Number:</label></th>
+            <td><input type="text" id="houseNumber" name="houseNumber" required></td>
+            <th><label for="street">Street:</label></th>
+            <td><input type="text" id="street" name="street" required></td>
+        </tr>
+
+        <tr>
+            <th><label for="city">City:</label></th>
+            <td>
+                <select id="city" name="city" required>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="Kalaburagi">Kalaburagi</option>
+                    <option value="Tumkur">Tumkur</option>
+                </select>
+            </td>
+            <th><label for="district">District:</label></th>
+            <td>
+                <select id="district" name="district" required>
+                    <option value="Kalaburagi">Kalaburagi</option>
+                    <option value="Bnaglore">Bangalore</option>
+                    <option value="Bidar">Bidar</option>
+                    <option value="tumkur">Tumkur</option>
+                    <option value="Yadgiri">Yadgiri</option>
+                </select>
+            </td>
+        </tr>
+
+
+
+        <tr>
+            <th><label for="state">State:</label></th>
+            <td>
+                <select id="state" name="state" required>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Maharastra">Maharashtra</option>
+                    <option value="Andra Pradesh">Andhra Pradesh</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Goa">Goa</option>
+                    <option value="MP">Madhya Pradesh</option>
+                </select>
+            </td>
+            <th><label for="pincode">Pincode:</label></th>
+            <td><input type="text" id="pincode" name="pincode" required></td>
+            <span id="pincodeError" class="error-message"></span>
+
+        </tr>
+
+
+        <tr>
+            <th><label >Gender:</label></th>
+            <td class="radio-group">
+                <label for="male"><input type="radio" id="male" name="gender" value="male">Male</label>
+                <label for="female"><input type="radio" id="female" name="gender" value="female">Female</label>
+                <label for="other"><input type="radio" id="other" name="gender" value="other">Other</label>
+            </td>
+
+        </tr>
+
+
+
+        <tr>
+            <td class="button-group" colspan="6" style="text-align: center;">
+                <button type="submit">Submit</button>
+                <button type="reset">Reset</button>
+            </td>
+        </tr>
+    </table>
+
+</form>
+
+<footer>
+    <p>&copy; 2023 : Prabhakar B K. June 5th batch. Trainer : Devendra Singh</p>
+</footer>
+</body>
+</html>
+
+
+
+
+
+
+
